@@ -6,7 +6,7 @@ Team Member:
 Name Student | NIM | Role
 1. Rezza Firnando | 2501020090 | Command & Search Engineer
 3. sayed abdillah | 2501020067 | QA, tester, dan documentation
-4. Fikri Enggaransyah  | 2501020087| ...
+4. Fikri Enggaransyah  | 2501020087| Data & File Engineer
 
 Role Available
 1. Data & File Engineer

@@ -43,5 +43,3 @@ Perintah bersifat case sensitive (' HELP' -> *Command not recognised*).
 
 ## Pengumpulan 
 Folder bernama '2501020090' dikompres **7zip** ('.7z'), kirim lewat Google From . Deadline **9 November 2026**.
-
-

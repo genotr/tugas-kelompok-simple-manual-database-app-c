@@ -11,7 +11,7 @@
 #define LINE_MAX_LEN
 
 /*--- helper parsing ---*/
-static char *skip_spaces(char *s) {while (*s && isspace((unsigned char))*s)) s++; return s; }
+static char *skip_spaces(char *s) {while (*s && isspace((unsigned char)*s)) s++; return s; }
 
 static void rtrim(char *s) {
     size_t n= strlen(s);
@@ -36,7 +36,7 @@ static int all_digits(const char *s) {
 }
 
 static int has_letter(const char *s) {
-    for (; *s; s++) if (isalpha(unsigned char)*s)) return 1;
+    for (; *s; s++) if (isalpha(()unsigned char)*s)) return 1;
     return 0;
 }
 
@@ -60,13 +60,13 @@ static void cmd_tambah(Database *db, char *args) {
     }
 
     int r= db_add(db, nim, nama);
-    if (r == DB_DUPLICATE) print("NIM %s sudah ada. data tidak di tambahkan.\n", nim);
+    if (r == DB_DUPLICATE) printf("NIM %s sudah ada. data tidak di tambahkan.\n", nim);
     else if (r == DB_ERROR) puts("gagal menyimpan data ke file.");
     else printf("data berhasil ditambahkan: %s %s\n", nim, nama);
 
 }
 
-static voide cmd_cari(Database *db, char *args) {
+static void cmd_cari(Database *db, char *args) {
     char *field = next_token(&args);
     char *value = args;
     rtrim(value);
@@ -93,8 +93,8 @@ static voide cmd_cari(Database *db, char *args) {
         puts("data not found.");
     } else {
         puts("result:");
-        for (size_t i = 0; < n; i++)
-        printf("%s &s\n", db->data[idx[i]].nim, db->data[idx[i]].nama);
+        for (size_t i = 0; i < n; i++)
+        printf("%s %s\n", db->data[idx[i]].nim, db->data[idx[i]].nama);
     }
 
     printf("total time %.3f seconds\n", secs);
@@ -102,6 +102,7 @@ static voide cmd_cari(Database *db, char *args) {
 }
 
 /*--- loop utama ---*/
+#define LINE_MAX_LEN 512
 void command_loop(Database *db) {
     char line[LINE_MAX_LEN];
 

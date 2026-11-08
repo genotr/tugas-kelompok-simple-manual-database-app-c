@@ -8,7 +8,7 @@
 #include <string.h>
 #include <time.h>
 
-#define LINE_MAX_LEN
+#define LINE_MAX_LEN 512
 
 /*--- helper parsing ---*/
 static char *skip_spaces(char *s) {while (*s && isspace((unsigned char)*s)) s++; return s; }
@@ -24,7 +24,7 @@ static char *next_token(char **p) {
     if (!*s) { *p = s; return NULL; }
     char *start = s;
     while (*s && !isspace((unsigned char)*s)) s++;
-    if (*s) *s++ = '\0'
+    if (*s) *s++ = '\0';
     *p = skip_spaces(s);
     return start;
 }
@@ -36,7 +36,7 @@ static int all_digits(const char *s) {
 }
 
 static int has_letter(const char *s) {
-    for (; *s; s++) if (isalpha(()unsigned char)*s)) return 1;
+    for (; *s; s++) if (isalpha((unsigned char)*s)) return 1;
     return 0;
 }
 
@@ -102,14 +102,13 @@ static void cmd_cari(Database *db, char *args) {
 }
 
 /*--- loop utama ---*/
-#define LINE_MAX_LEN 512
 void command_loop(Database *db) {
     char line[LINE_MAX_LEN];
 
     for (;;) {
         printf("Your command: ");
         fflush(stdout);
-        if (!ifgets(line, sizeof line, stdin)) {putchar('\n'); break;} /*--- EOF ---*/
+        if (!fgets(line, sizeof line, stdin)) {putchar('\n'); break;} /*--- EOF ---*/
 
         char *p = line;
         char *cmd = next_token(&p);

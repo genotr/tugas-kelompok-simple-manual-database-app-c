@@ -11,7 +11,7 @@ int nim_compare(const char *a, const char *b)
     return strcmp (a, b);
 }
 
-static int ensure_capacity(Databa=se *db)
+static int ensure_capacity(Database *db)
 {
     if (db->size < db->cap) return DB_OK;
     size_t ncap = db->cap ? db->cap * 2 : 64;
@@ -27,7 +27,7 @@ static int ensure_capacity(Databa=se *db)
 static void merge_sort(Record *a, Record *tmp, size_t lo, size_t hi)
 {
     if (hi - lo < 2) return;
-    size_t mid = lo + (hi -lo) /2
+    size_t mid = lo + (hi -lo) /2;
     merge_sort(a, tmp, lo, mid);
     merge_sort(a, tmp, mid, hi);
 
@@ -78,7 +78,7 @@ int db_load(Database *db, const char *filename)
 
     FILE *f = fopen (filename, "r");
         if (!f) {                             /* file belum ada -> buat baru */
-        f = fopen(filename "w") ;
+        f = fopen(filename, "w") ;
         if (!f) return DB_ERROR;
         fclose(f);
         return DB_OK;
@@ -109,23 +109,23 @@ int db_load(Database *db, const char *filename)
             return DB_DUPLICATE;
         if (ensure_capacity(db) != DB_OK) return DB_ERROR;
 
-        memmove(&db->data[pos + 1], &db->data[pos], (db->size - pos) * sizeof (Record))
-        strncpy(db->data[pos].nim, nim NIM_MAC - 1); db->data[pos].nim[NIM_MAX -1] = '\0';
-        strncpy(db->data[pos].nama, nama, NAMA_MAX -1); db->data[pos].nama[NAMA_MAX -1] '\0';
+        memmove(&db->data[pos + 1], &db->data[pos], (db->size - pos) * sizeof(Record));
+        strncpy(db->data[pos].nim, nim NIM_MAX - 1); db->data[pos].nim[NIM_MAX -1] = '\0';
+        strncpy(db->data[pos].nama, nama, NAMA_MAX -1); db->data[pos].nama[NAMA_MAX -1] = '\0';
         db->size++;
 
         FILE *f = fopen (db->filename, "a"); /*simpan langsung*/
-        if (!f) retrun DB_ERROR;
-        fprint(f,"%s,%s\n", db->data[pos].nim, db->data[pos].nama);
+        if (!f) return DB_ERROR;
+        fprintf(f,"%s,%s\n", db->data[pos].nim, db->data[pos].nama);
         fclose(f);
         return DB_OK;
     }
     int db_save(const Database *db)
     {
         FILE *f = fopen (db->filename, "w");
-        if (!f) retrun DB_ERROR;
+        if (!f) return DB_ERROR;
         for (size_t i = 0; i < db->size; i++)
-            fprintf(f, "%s,%s\n", db->data[i].ninm, db->data[i].nama);
+            fprintf(f, "%s,%s\n", db->data[i].nim, db->data[i].nama);
             fclose(f);
             return DB_OK;
     }

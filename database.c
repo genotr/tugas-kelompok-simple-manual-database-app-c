@@ -110,7 +110,7 @@ int db_load(Database *db, const char *filename)
         if (ensure_capacity(db) != DB_OK) return DB_ERROR;
 
         memmove(&db->data[pos + 1], &db->data[pos], (db->size - pos) * sizeof(Record));
-        strncpy(db->data[pos].nim, nim NIM_MAX - 1); db->data[pos].nim[NIM_MAX -1] = '\0';
+        strncpy(db->data[pos].nim, nim, NIM_MAX - 1); db->data[pos].nim[NIM_MAX -1] = '\0';
         strncpy(db->data[pos].nama, nama, NAMA_MAX -1); db->data[pos].nama[NAMA_MAX -1] = '\0';
         db->size++;
 
@@ -126,8 +126,8 @@ int db_load(Database *db, const char *filename)
         if (!f) return DB_ERROR;
         for (size_t i = 0; i < db->size; i++)
             fprintf(f, "%s,%s\n", db->data[i].nim, db->data[i].nama);
-            fclose(f);
-            return DB_OK;
+        fclose(f);
+        return DB_OK;
     }
 
     void db_free(Database *db)

@@ -31,11 +31,11 @@ if (!idx) return 0;
 
 for (size_t i = 0; i < db->size; i++) {
     const char *target = (field == FIELD_NIM) ? db->data[i].nim : db->data[i].nama;
-    if (contains_ci(target, value)) idx[coumt++] = i;
+    if (contains_ci(target, value)) idx[count++] = i;
     
     }
     if (count == 0) { free(idx); return 0;}
-    *out_idx = idx
+    *out_idx = idx;
     return count;
     
 }

@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
     Database db;
     if(db_load(&db, argv[1]) !=DB_OK){
         fprintf(stderr, "tidak dapat membuka/membuat file: %s\n", argv[1]);
-        retun 1;
+        return 1;
     }
 
     command_loop(&db);
